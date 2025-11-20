@@ -22,19 +22,50 @@ class Seller(BaseModel):
 # async def create_product(product: Product, seller: Seller):
 #   return {"product": product, "seller": seller}
 
+
 # Make body parameter optional
 # @app.post("/product")
 # async def create_product(product: Product, seller: Seller | None = None):
 #   return {"product": product, "seller": seller}
 
+
+
+
 # Singular value in body
+# @app.post("/product")
+# async def create_product(
+#   product: Product,   # Product Pydentic Schema
+#   seller: Seller,     # Seller Pydantic Schema
+#   secret_key : Annotated[str, Body()]   # Extra Schema that is not defined in Pydantic Schema
+#   ):
+  
+#   return {"product": product, "seller": seller, "secret_key": secret_key}
+  
+  
+# Without Embed single body parameter
+
+# @app.post("/product")
+# async def create_product(product:Product):
+#   return product
+
+# Request body without embed
+
+# {
+#   "name": "string",
+#   "price": 0,
+#   "stock": 0
+# }
+
 
 @app.post("/product")
-async def create_product(
-  product: Product,   # Product Pydentic Schema
-  seller: Seller,     # Seller Pydantic Schema
-  secret_key : Annotated[str, Body()]   # Extra Schema that is not defined in Pydantic Schema
-  ):
-  
-  return {"product": product, "seller": seller, "secret_key": secret_key}
-  
+async def create_product(product: Annotated[Product, Body(embed=True)] ):
+  return product
+
+# With Embed product key in request body
+# {
+#   "product": {
+#     "name": "string",
+#     "price": 0,
+#     "stock": 0
+#   }
+# }
