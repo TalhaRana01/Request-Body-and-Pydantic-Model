@@ -5,6 +5,7 @@ app = FastAPI(
   version="0.1.0"
 )
 
-@app.get("/products")
-async def get_products():
-  return {"response": "all products"}
+# Create or insert Data
+@app.post("/products")
+async def get_products(new_product : dict):
+  return {"response": "Product created", "new_product": new_product}
