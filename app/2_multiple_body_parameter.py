@@ -17,7 +17,12 @@ class Seller(BaseModel):
   full_name : str | None = None
   
   
+# @app.post("/product")
+# async def create_product(product: Product, seller: Seller):
+#   return {"product": product, "seller": seller}
+
+# Make body parameter optional
 @app.post("/product")
-async def create_product(product: Product, seller: Seller):
+async def create_product(product: Product, seller: Seller | None = None):
   return {"product": product, "seller": seller}
   
