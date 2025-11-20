@@ -52,16 +52,29 @@ class Product(BaseModel):
 
 
 # Add new calculated attribute 
-@app.post("/products", status_code=status.HTTP_201_CREATED)
-async def create_product(new_product: Product):
-  # convert into disctionary data type
-  product_dict = new_product.model_dump()
-  # calculating tax percentage on product price
-  price_with_tax = new_product.price + (new_product.price * 15/100)
-  # update product price with tax
-  product_dict.update({"price_with_tax": price_with_tax})
+# @app.post("/products", status_code=status.HTTP_201_CREATED)
+# async def create_product(new_product: Product):
+#   # convert into disctionary data type
+#   product_dict = new_product.model_dump()
+#   # calculating tax percentage on product price
+#   price_with_tax = new_product.price + (new_product.price * 15/100)
+#   # update product price with tax
+#   product_dict.update({"price_with_tax": price_with_tax})
   
-  return product_dict
+#   return product_dict
+
+# Combining Request Body with Path Parameters
+
+@app.put("/products/{product_id}", status_code=status.HTTP_201_CREATED)
+async def create_product(product_id: int , new_updated_product: Product):
+  return {"product_id": product_id, "new_updated_product": new_updated_product}
+
+
+
+
+
+
+
 
 
 # {
