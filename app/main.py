@@ -37,15 +37,31 @@ class Product(BaseModel):
 #   """
 #   return {"message": "Product created", "product": new_product}
 
+
+
 # Accessing Attribute inside a function
+# @app.post("/products", status_code=status.HTTP_201_CREATED)
+# async def create_product(new_product: Product):
+#   print(new_product.id)
+#   print(new_product.name)
+#   print(new_product.price)
+#   print(new_product.stock)
+  
+#   return new_product
+
+
+
+# Add new calculated attribute 
 @app.post("/products", status_code=status.HTTP_201_CREATED)
 async def create_product(new_product: Product):
-  print(new_product.id)
-  print(new_product.name)
-  print(new_product.price)
-  print(new_product.stock)
+  # convert into disctionary data type
+  product_dict = new_product.model_dump()
+  # calculating tax percentage on product price
+  price_with_tax = new_product.price + (new_product.price * 15/100)
+  # update product price with tax
+  product_dict.update({"price_with_tax": price_with_tax})
   
-  return new_product
+  return product_dict
 
 
 # {
