@@ -71,7 +71,11 @@ async def create_product(product_id: int , new_updated_product: Product):
 
 
 
+# Adding Query Parameters
 
+@app.put("/products/{product_id}")
+async def create_product(product_id: int , new_updated_product: Product, discount: float | None = None):
+  return {"product_id": product_id, "new_updated_product": new_updated_product, "discount": discount}
 
 
 
