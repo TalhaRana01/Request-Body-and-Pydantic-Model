@@ -28,14 +28,24 @@ class Product(BaseModel):
 
 
 
+# @app.post("/products", status_code=status.HTTP_201_CREATED)
+# async def create_product(new_product: Product):
+#   """
+#       Hum ny Pydantic class main 
+#       already define kr diya ha data type ky sath  es liye humhan  
+#       request body wo fields required hogi agr koi missing hui to error aye ga
+#   """
+#   return {"message": "Product created", "product": new_product}
+
+# Accessing Attribute inside a function
 @app.post("/products", status_code=status.HTTP_201_CREATED)
 async def create_product(new_product: Product):
-  """
-      Hum ny Pydantic class main 
-      already define kr diya ha es liye humhan 
-      wo fields required hogi agr koi missing hui to error aye ga
-  """
-  return {"message": "Product created", "product": new_product}
+  print(new_product.id)
+  print(new_product.name)
+  print(new_product.price)
+  print(new_product.stock)
+  
+  return new_product
 
 
 # {
