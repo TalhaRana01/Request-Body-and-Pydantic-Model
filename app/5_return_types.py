@@ -42,7 +42,13 @@ class Product(BaseModel):
 #     {"id": 3, "name": "mini laptop", "price": 75000}
 #   ]
   
+# @app.post("/products")
+# async def create_product(product: Product) -> Product:
+#   return product
 
+@app.post("/products")
+async def create_product(product: List[Product]) -> List[Product]:
+  return product
   
 
 
