@@ -10,6 +10,20 @@ class Product(BaseModel):
   price : float
   stock: int | None = None
   
+class ProductOut(BaseModel):
+  name : str
+  price : float
+  
+class BaseUser(BaseModel):
+  username : str
+  full_name : str | None = None
+  
+
+class UserIn(BaseUser):
+  password: str
+  
+  
+ 
 
 # Without return type we can send any kind of data 
 # we can return string value
@@ -46,9 +60,17 @@ class Product(BaseModel):
 # async def create_product(product: Product) -> Product:
 #   return product
 
-@app.post("/products")
-async def create_product(product: List[Product]) -> List[Product]:
-  return product
+# @app.post("/products")
+# async def create_product(product: List[Product]) -> List[Product]:
+#   return product
+# @app.post("/products")
+# async def create_product(product: Product) -> ProductOut:
+#   return product
+
+
+@app.post("/user")
+async def create_user(user: UserIn) -> BaseUser:
+  return user
   
 
 
