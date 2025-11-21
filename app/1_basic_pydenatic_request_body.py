@@ -65,17 +65,26 @@ class Product(BaseModel):
 
 # Combining Request Body with Path Parameters
 
-@app.put("/products/{product_id}", status_code=status.HTTP_201_CREATED)
-async def create_product(product_id: int , new_updated_product: Product):
-  return {"product_id": product_id, "new_updated_product": new_updated_product}
+# @app.put("/products/{product_id}", status_code=status.HTTP_201_CREATED)
+# async def create_product(
+#   product_id: int,
+#   new_updated_product: Product
+#   ):
+  
+#   return {"product_id": product_id, "new_updated_product": new_updated_product}
 
 
 
 # Adding Query Parameters
 
-@app.put("/products/{product_id}")
-async def create_product(product_id: int , new_updated_product: Product, discount: float | None = None):
-  return {"product_id": product_id, "new_updated_product": new_updated_product, "discount": discount}
+# @app.put("/products/{product_id}")
+# async def create_product(
+#   product_id: int,
+#   new_updated_product: Product,
+#   discount: float | None = None
+#   ):
+  
+#   return {"product_id": product_id, "new_updated_product": new_updated_product, "discount": discount}
 
 
 

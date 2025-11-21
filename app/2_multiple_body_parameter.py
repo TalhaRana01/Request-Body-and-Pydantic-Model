@@ -57,9 +57,9 @@ class Seller(BaseModel):
 # }
 
 
-@app.post("/product")
-async def create_product(product: Annotated[Product, Body(embed=True)] ):
-  return product
+# @app.post("/product")
+# async def create_product(product: Annotated[Product, Body(embed=True)] ):
+#   return product
 
 # With Embed product key in request body
 # {
