@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import List
+from typing import List, Any
 
 app = FastAPI()
 
@@ -102,9 +102,18 @@ class UserIn(BaseUser):
 # async def cerate_product(product: List[Product]):
 #   return product
 
+# @app.post("/users", response_model=BaseUser)
+# async def cerate_user(user: UserIn):
+#   return user
+
+
 @app.post("/users", response_model=BaseUser)
-async def cerate_user(user: UserIn):
+async def cerate_user(user: UserIn) -> BaseUser:
   return user
+
+@app.post("/products", response_model=Product)
+async def cerate_user(product: Product) -> Any:
+  return product
   
 
 
