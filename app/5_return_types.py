@@ -14,6 +14,8 @@ class ProductOut(BaseModel):
   name : str
   price : float
   
+  
+  
 class BaseUser(BaseModel):
   username : str
   full_name : str | None = None
@@ -68,9 +70,31 @@ class UserIn(BaseUser):
 #   return product
 
 
-@app.post("/user")
-async def create_user(user: UserIn) -> BaseUser:
-  return user
+# @app.post("/user")
+# async def create_user(user: UserIn) -> BaseUser:
+#   return user
+
+##------------------------------------
+## Response Model
+##-----------------------------------
+
+# with response_model Parameter
+# @app.get("/products", response_model=Product)
+# async def get_product():
+  # return {"id": 1, "name": "Laptop", "price": 33.56, "stock" : 5}
+  
+@app.get("/products", response_model=List[Product])
+async def get_product():
+  # return {"id": 1, "name": "Laptop", "price": 33.56, "stock" : 5}
+  
+  return [
+    {"id": 1, "name": "laptop", "price": 25000},
+    {"id": 2, "name": "mobile", "price": 50000},
+    {"id": 3, "name": "mini laptop", "price": 75000}
+  ]
+  
+
+
   
 
 
